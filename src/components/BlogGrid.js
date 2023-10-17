@@ -3,11 +3,7 @@ import Link from "next/link";
 export default function BlogGrid({ data }) {
   const [yyyy, mm, dd, hh, mi] = data?.publishedAt.split(/[/:\-T]/);
   return (
-    <Link
-      href={`blog/${data?.slug}`}
-      key={i}
-      className={` grid justify-center `}
-    >
+    <Link href={`blog/${data?.slug}`} className={` grid justify-center `}>
       <div className="grid grid-rows-3 w-full h-auto  ">
         <div className=" w-full h-full row-span-2 overflow-hidden">
           <img
