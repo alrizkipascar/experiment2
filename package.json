@@ -26,5 +26,8 @@
     "sanity-plugin-mux-input": "^2.2.3",
     "styled-components": "~5.2.3",
     "tailwindcss": "3.3.3"
+  },
+  "devDependencies": {
+    "@cloudflare/next-on-pages": "^1.6.3"
   }
 }
