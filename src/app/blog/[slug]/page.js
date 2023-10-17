@@ -1,5 +1,3 @@
-export const runtime = "edge";
-
 ("use client");
 import { kanit } from "@/app/fonts";
 import { useEffect, useState } from "react";
@@ -10,6 +8,7 @@ import createBody from "@/components/Blogs/createBody";
 import Loading from "./loading";
 
 const kanit_fonts = kanit;
+export const runtime = "edge";
 
 async function getDataBlog(slug) {
   try {

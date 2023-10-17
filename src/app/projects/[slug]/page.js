@@ -1,4 +1,3 @@
-export const runtime = "edge";
 ("use client");
 import { kanit } from "@/app/fonts";
 import { useEffect, useState } from "react";
@@ -10,6 +9,7 @@ import Loading from "../loading";
 import PhotoGrid from "@/components/Products/PhotoGrid";
 
 const kanit_fonts = kanit;
+export const runtime = "edge";
 
 async function getDataProject(slug) {
   try {
