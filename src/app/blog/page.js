@@ -1,25 +1,19 @@
 // "use client";
 import BlogGrid from "@/components/BlogGrid";
 import Link from "next/link";
-// import { useEffect, useState } from "react";
 import { getBlogs } from "../../../sanity/sanity-utils";
 import createBody from "@/components/Blogs/createBody";
 import Loading from "./loading";
 
-async function getDataBlogs(context) {
+async function getDataBlogs() {
   try {
-    const slug = context.params.slug;
     const blogs = await getBlogs();
     return blogs;
   } catch (error) {}
 }
 
-export default async function Blog(context) {
-  // SET ELEMENT
-  // const [el1, setEl1] = useState(null);
-
-  const blog = await getDataBlogs(context);
-  // const [observer1, setObserver1] = useState(null);
+export default async function Blog() {
+  const blog = await getDataBlogs();
   if (blog == undefined) {
     return (
       <div className="w-full box-border">
@@ -27,55 +21,6 @@ export default async function Blog(context) {
       </div>
     );
   }
-  // const [anim1, setPage1] = useState(false);
-
-  // const [blog, setBlogs] = useState([]);
-  // useEffect(() => {
-  //   getDataBlogs()
-  //     .then((data) => {
-  //       setBlogs(data);
-  //     })
-  //     .catch((error) => {
-  //       console.log("error fetching posts", error);
-  //     });
-  // }, []);
-  // useEffect(() => {
-  //   setEl1(document.querySelector("#first"));
-
-  //   // observer.observe(el);
-  //   const observer1 = new window.IntersectionObserver(
-  //     ([entry]) => {
-  //       if (entry.isIntersecting) {
-  //         setPage1(true);
-  //         return;
-  //       }
-  //       // setPage1(false);
-  //     },
-  //     {
-  //       root: null,
-  //       threshold: 0.1, // set offset 0.1 means trigger if atleast 10% of element in viewport
-  //     }
-  //   );
-  //   setObserver1(observer1);
-  // }, []);
-
-  // if (observer1) {
-  //   observer1.observe(el1);
-  // }
-
-  // const [boxStyle, setBoxStyle] = useState("hidden");
-
-  // useEffect(() => {
-  //   if (anim1 === true) {
-  //     let newStyle = "opacity-0 translate-y-32 ";
-  //     setBoxStyle(newStyle);
-
-  //     setTimeout(() => {
-  //       newStyle = "opacity-100  translate-y-0";
-  //       setBoxStyle(newStyle);
-  //     }, 500);
-  //   }
-  // }, [anim1]);
   const truncate = (str, max, len) => {
     return str.length > max ? str.substring(0, len) + "..." : str;
   };
@@ -84,7 +29,7 @@ export default async function Blog(context) {
   const date = blog[0]?.publishedAt.split(/[/:\-T]/) ?? null;
 
   return (
-    <div className=" h-full bg-background min-w-full flex min-h-screen flex-col  justify-between px-12 pt-[200px] text-textWhite">
+    <section className=" h-full bg-background min-w-full flex min-h-screen flex-col  justify-between px-12 pt-[200px] text-textWhite">
       <div className="lg:px-24 h-full">
         <div className={`self-start   lg:w-[600px] h-auto `}>
           <p className="text-[30px] lg:text-[60px] text-textWhite ">
@@ -143,7 +88,7 @@ export default async function Blog(context) {
               </div>
             </div>
           </article>
-          <div className="pt-6">
+          <section className="pt-6">
             <div className={`self-start   lg:w-[600px] h-auto  `}>
               <p className="text-[30px] lg:text-[60px] text-textWhite ">
                 More Blog
@@ -152,20 +97,12 @@ export default async function Blog(context) {
             <div className="grid grid-cols-1 pt-6 lg:grid-cols-3 w-full h-full gap-3  border-t-2 border-secondary">
               {/* data?.slice(1, 4).map((index, i) => { */}
               {blog?.map((index, i) => {
-                return (
-                  <Link
-                    href={`blog/${index?.slug}`}
-                    key={i}
-                    className={`transition-all duration-1500 grid justify-center `}
-                  >
-                    <BlogGrid data={index} indexData={i}></BlogGrid>
-                  </Link>
-                );
+                return <BlogGrid key={i} data={index} indexData={i}></BlogGrid>;
               })}
             </div>
-          </div>
+          </section>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
