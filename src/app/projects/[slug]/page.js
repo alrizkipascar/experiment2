@@ -1,4 +1,4 @@
-("use client");
+"use client";
 import { kanit } from "@/app/fonts";
 import { useEffect, useState } from "react";
 
