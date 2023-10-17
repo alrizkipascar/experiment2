@@ -1,17 +1,28 @@
-"use client";
+// "use client";
 import { kanit } from "@/app/fonts";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 
-import { useParams } from "next/navigation";
+// import { useParams } from "next/navigation";
 import { getBlog } from "../../../../sanity/sanity-utils";
 import createBody from "@/components/Blogs/createBody";
 import Loading from "./loading";
 
 const kanit_fonts = kanit;
 // export const runtime = "edge";
+// export const getServerSideProps = async (context) => {
+//   const { slug } = context.query;
+//   const blog = await getBlog(slug);
 
-async function getDataBlog(slug) {
+//   return {
+//     props: {
+//       blog: blog,
+//     },
+//   };
+// };
+
+async function getDataBlog(context) {
   try {
+    const slug = context.params.slug;
     const blogs = await getBlog(slug);
     return blogs;
   } catch (error) {
@@ -19,20 +30,23 @@ async function getDataBlog(slug) {
   }
 }
 
-export default function Blog() {
-  const router = useParams();
-  const { slug } = router;
-  const [blog, setBlogs] = useState([]);
+export default async function Blog(context) {
+  // const router = useParams();
+  // const { slug } = router;
+  const blog = await getDataBlog(context);
+  // const router = useParams();
+  // const { slug } = router;
+  // const [blog, setBlogs] = useState([]);
 
-  useEffect(() => {
-    getDataBlog(slug)
-      .then((data) => {
-        setBlogs(data);
-      })
-      .catch((error) => {
-        console.log("error fetching posts", error);
-      });
-  });
+  // useEffect(() => {
+  //   getDataBlog(slug)
+  //     .then((data) => {
+  //       setBlogs(data);
+  //     })
+  //     .catch((error) => {
+  //       console.log("error fetching posts", error);
+  //     });
+  // });
 
   let bodyFirst = "";
   let bodyAfter = "";
@@ -51,9 +65,9 @@ export default function Blog() {
     blogDate = newDate.toDateString();
     blogTime = newDate.toLocaleTimeString();
   }
-  if (blog.length == 0) {
+  if (blog == undefined) {
     return (
-      <div className="w-screen box-border">
+      <div className="w-full box-border">
         <Loading />{" "}
       </div>
     );

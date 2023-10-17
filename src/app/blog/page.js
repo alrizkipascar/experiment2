@@ -1,72 +1,81 @@
-"use client";
+// "use client";
 import BlogGrid from "@/components/BlogGrid";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import { getBlogs } from "../../../sanity/sanity-utils";
 import createBody from "@/components/Blogs/createBody";
+import Loading from "./loading";
 
-async function getDataBlogs() {
+async function getDataBlogs(context) {
   try {
+    const slug = context.params.slug;
     const blogs = await getBlogs();
     return blogs;
   } catch (error) {}
 }
 
-export default function Blog() {
+export default async function Blog(context) {
   // SET ELEMENT
-  const [el1, setEl1] = useState(null);
+  // const [el1, setEl1] = useState(null);
 
-  const [observer1, setObserver1] = useState(null);
-
-  const [anim1, setPage1] = useState(false);
-
-  const [blog, setBlogs] = useState([]);
-  useEffect(() => {
-    getDataBlogs()
-      .then((data) => {
-        setBlogs(data);
-      })
-      .catch((error) => {
-        console.log("error fetching posts", error);
-      });
-  }, []);
-  useEffect(() => {
-    setEl1(document.querySelector("#first"));
-
-    // observer.observe(el);
-    const observer1 = new window.IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setPage1(true);
-          return;
-        }
-        // setPage1(false);
-      },
-      {
-        root: null,
-        threshold: 0.1, // set offset 0.1 means trigger if atleast 10% of element in viewport
-      }
+  const blog = await getDataBlogs(context);
+  // const [observer1, setObserver1] = useState(null);
+  if (blog == undefined) {
+    return (
+      <div className="w-full box-border">
+        <Loading />{" "}
+      </div>
     );
-    setObserver1(observer1);
-  }, []);
-
-  if (observer1) {
-    observer1.observe(el1);
   }
+  // const [anim1, setPage1] = useState(false);
 
-  const [boxStyle, setBoxStyle] = useState("hidden");
+  // const [blog, setBlogs] = useState([]);
+  // useEffect(() => {
+  //   getDataBlogs()
+  //     .then((data) => {
+  //       setBlogs(data);
+  //     })
+  //     .catch((error) => {
+  //       console.log("error fetching posts", error);
+  //     });
+  // }, []);
+  // useEffect(() => {
+  //   setEl1(document.querySelector("#first"));
 
-  useEffect(() => {
-    if (anim1 === true) {
-      let newStyle = "opacity-0 translate-y-32 ";
-      setBoxStyle(newStyle);
+  //   // observer.observe(el);
+  //   const observer1 = new window.IntersectionObserver(
+  //     ([entry]) => {
+  //       if (entry.isIntersecting) {
+  //         setPage1(true);
+  //         return;
+  //       }
+  //       // setPage1(false);
+  //     },
+  //     {
+  //       root: null,
+  //       threshold: 0.1, // set offset 0.1 means trigger if atleast 10% of element in viewport
+  //     }
+  //   );
+  //   setObserver1(observer1);
+  // }, []);
 
-      setTimeout(() => {
-        newStyle = "opacity-100  translate-y-0";
-        setBoxStyle(newStyle);
-      }, 500);
-    }
-  }, [anim1]);
+  // if (observer1) {
+  //   observer1.observe(el1);
+  // }
+
+  // const [boxStyle, setBoxStyle] = useState("hidden");
+
+  // useEffect(() => {
+  //   if (anim1 === true) {
+  //     let newStyle = "opacity-0 translate-y-32 ";
+  //     setBoxStyle(newStyle);
+
+  //     setTimeout(() => {
+  //       newStyle = "opacity-100  translate-y-0";
+  //       setBoxStyle(newStyle);
+  //     }, 500);
+  //   }
+  // }, [anim1]);
   const truncate = (str, max, len) => {
     return str.length > max ? str.substring(0, len) + "..." : str;
   };
@@ -92,9 +101,7 @@ export default function Blog() {
             className="grid lg:grid-cols-5"
           >
             <div
-              className={`transition-all duration-500  w-full h-full  lg:col-span-2 overflow-hidden ${
-                anim1 ? "opacity-100" : "opacity-0"
-              }`}
+              className={`transition-all duration-500  w-full h-full  lg:col-span-2 overflow-hidden `}
             >
               <img
                 src={blog[0]?.imageUrl ?? null}
@@ -105,9 +112,7 @@ export default function Blog() {
             <div className="lg:col-span-3 w-full h-full">
               <div className="grid grid-rows-5  w-full h-full">
                 <div
-                  className={`transition-all duration-700 row-span-1 w-full h-full  grid pl-[20px] ${
-                    anim1 ? "opacity-100" : "opacity-0"
-                  }`}
+                  className={`transition-all duration-700 row-span-1 w-full h-full  grid pl-[20px]`}
                 >
                   <p className="self-center text-textWhite">
                     {date
@@ -116,23 +121,17 @@ export default function Blog() {
                   </p>{" "}
                 </div>
                 <div
-                  className={`transition-all duration-700 pl-[20px] row-span-1 w-full h-full  text-3xl text-slate-800 font-bold ${
-                    anim1 ? "opacity-100" : "opacity-0"
-                  }`}
+                  className={`transition-all duration-700 pl-[20px] row-span-1 w-full h-full  text-3xl text-slate-800 font-bold `}
                 >
                   {blog[0]?.title}
                 </div>
                 <p
-                  className={`transition-all duration-700 pl-[20px] row-span-2  ${
-                    anim1 ? "opacity-100" : "opacity-0"
-                  }`}
+                  className={`transition-all duration-700 pl-[20px] row-span-2 `}
                 >
                   {staticDesc}
                 </p>
                 <div
-                  className={`  transition-all duration-1000 pl-[20px] grid row-span-1 w-full h-full  ${
-                    anim1 ? "opacity-100" : "opacity-0"
-                  }`}
+                  className={`  transition-all duration-1000 pl-[20px] grid row-span-1 w-full h-full`}
                 >
                   <Link
                     href={`blog/${blog[0]?.slug}`}
@@ -157,7 +156,7 @@ export default function Blog() {
                   <Link
                     href={`blog/${index?.slug}`}
                     key={i}
-                    className={`transition-all duration-1500 grid justify-center ${boxStyle}`}
+                    className={`transition-all duration-1500 grid justify-center `}
                   >
                     <BlogGrid data={index} indexData={i}></BlogGrid>
                   </Link>
