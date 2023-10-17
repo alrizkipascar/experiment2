@@ -37,11 +37,9 @@ export default function Blog() {
     const observer1 = new window.IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          console.log("ENTER 1");
           setPage1(true);
           return;
         }
-        console.log("LEAVE 1");
         // setPage1(false);
       },
       {

@@ -28,7 +28,6 @@ export default async function Projects() {
       </div>
     );
   }
-  console.log(projects);
   return (
     <div className="bg-background w-full h-auto">
       <div className="bg-background w-full h-auto">

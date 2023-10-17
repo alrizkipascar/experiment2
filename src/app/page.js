@@ -32,7 +32,6 @@ export default async function Home() {
       </div>
     );
   }
-  console.log("projects", projects);
   return (
     <div className="w-full h-auto ">
       <section className="hidden lg:block parallax lg:w-full h-[5px] lg:h-[100vh] text-whitebg overflow-hidden ">

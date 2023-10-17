@@ -15,7 +15,6 @@ async function getAbout() {
 
 export default async function About() {
   const aboutContent = await getAbout();
-  console.log("aboutContent", aboutContent);
   return (
     <section className="bg-background w-full h-auto">
       <div className=" mx-auto pt-[200px] text-textWhite">

@@ -1,4 +1,6 @@
-"use client";
+export const runtime = "edge";
+
+("use client");
 import { kanit } from "@/app/fonts";
 import { useEffect, useState } from "react";
 

@@ -19,7 +19,6 @@ export default async function HeroBlog() {
     return str.length > max ? str.substring(0, len) + "..." : str;
   };
   let trunctext = truncate(bodyText, 500, 500);
-  //   console.log("data", dataBlog?.body[0]?.children[0]?.text); ?.children[0]?.text
 
   return (
     <div className="blog-center  pt-10">

@@ -1,4 +1,5 @@
-"use client";
+export const runtime = "edge";
+("use client");
 import { kanit } from "@/app/fonts";
 import { useEffect, useState } from "react";
 
@@ -22,7 +23,6 @@ async function getDataProject(slug) {
 export default function Project() {
   const router = useParams();
   const { slug } = router;
-  console.log("params", slug);
   const [blog, setBlogs] = useState([]);
   //
   useEffect(() => {
@@ -40,7 +40,6 @@ export default function Project() {
   let blogDate = null;
   let blogTime = null;
   if (blog) {
-    console.log("blog", blog);
     if (blog?.parallaxImage) {
       bodyFirst += createBody(blog?.body);
       blogDate = new Date(blog?.publishedAt);
