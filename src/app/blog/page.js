@@ -29,7 +29,7 @@ export default async function Blog() {
   const date = blog[0]?.publishedAt.split(/[/:\-T]/) ?? null;
 
   return (
-    <section className=" h-full bg-background min-w-full flex min-h-screen flex-col  justify-between px-12 pt-[200px] text-textWhite">
+    <div className=" h-full bg-background min-w-full flex min-h-screen flex-col  justify-between px-12 pt-[200px] text-textWhite">
       <div className="lg:px-24 h-full">
         <div className={`self-start   lg:w-[600px] h-auto `}>
           <p className="text-[30px] lg:text-[60px] text-textWhite ">
@@ -103,6 +103,6 @@ export default async function Blog() {
           </section>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
