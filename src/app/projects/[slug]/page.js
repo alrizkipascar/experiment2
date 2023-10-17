@@ -9,7 +9,7 @@ import Loading from "../loading";
 import PhotoGrid from "@/components/Products/PhotoGrid";
 
 const kanit_fonts = kanit;
-export const runtime = "edge";
+// export const runtime = "edge";
 
 async function getDataProject(slug) {
   try {

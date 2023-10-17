@@ -8,7 +8,7 @@ import createBody from "@/components/Blogs/createBody";
 import Loading from "./loading";
 
 const kanit_fonts = kanit;
-export const runtime = "edge";
+// export const runtime = "edge";
 
 async function getDataBlog(slug) {
   try {

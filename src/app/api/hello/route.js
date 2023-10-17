@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 export async function GET(request) {
   const cookieStore = cookies();
