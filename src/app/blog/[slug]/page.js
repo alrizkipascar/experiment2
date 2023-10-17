@@ -47,7 +47,13 @@ export default async function Blog(context) {
   //       console.log("error fetching posts", error);
   //     });
   // });
-
+  if (blog == undefined) {
+    return (
+      <div className="w-full box-border">
+        <Loading />{" "}
+      </div>
+    );
+  }
   let bodyFirst = "";
   let bodyAfter = "";
   let blogDate = null;
@@ -64,13 +70,6 @@ export default async function Blog(context) {
     let newDate = new Date(blog?.publishedAt);
     blogDate = newDate.toDateString();
     blogTime = newDate.toLocaleTimeString();
-  }
-  if (blog == undefined) {
-    return (
-      <div className="w-full box-border">
-        <Loading />{" "}
-      </div>
-    );
   }
   return (
     <section className="bg-background w-full h-full text-textWhite">
@@ -114,11 +113,14 @@ export default async function Blog(context) {
               }}
               alt={blog?.parallaxImageAlt}
             >
-              <blockquote className="bg-white font-serif mx-4 p-4 text-center text-black md:p-8">
-                <p className="font-bold italic text-3xl">
-                  &ldquo;{blog?.parallaxImageText}&rdquo;
-                </p>
-              </blockquote>
+              {blog?.parallaxImageText == "" ||
+              blog?.parallaxImageText == null ? null : (
+                <blockquote className="bg-white font-serif mx-4 p-4 text-center text-black md:p-8">
+                  <p className="font-bold italic text-3xl">
+                    &ldquo;{blog?.parallaxImageText}&rdquo;
+                  </p>
+                </blockquote>
+              )}
             </div>
             <div className="font-serif leading-normal mx-auto py-12 px-4 max-w-lg  text-textWhite">
               <p
