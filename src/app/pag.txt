@@ -1,0 +1,41 @@
+"use client";
+import { useEffect, useState } from "react";
+import { kanit } from "./fonts";
+import Facilitates from "@/components/Facilitates";
+import TestimonialCard from "@/components/TestimonialCard";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import PageTransition from "@/components/PageTransition";
+
+export default function Home() {
+  const router = useRouter();
+
+  return (
+    //
+    <>
+      {/* <div className="h-screen w-full"> */}
+      <section className="parallax text-whitebg overflow-hidden ">
+        <video className="parallax-bg " loop autoplay="" muted>
+          <source src="/fashionedit.mp4" type="video/mp4" />
+        </video>
+
+        <div className="parallax-content">
+          <h1 className="text-3xl font-semibold text-center">
+            Welcome to our Parallax Example
+          </h1>
+          <p className="text-lg text-center">
+            Scroll down to see the parallax effect
+          </p>
+        </div>
+      </section>
+      <PageTransition>
+        <section className=" bg-graybaby w-screen h-screen">
+          <div className="page">
+            <h1>Home Page</h1>
+            <Link href="/another-page">Go to Another Page</Link>
+          </div>
+        </section>
+      </PageTransition>
+    </>
+  );
+}
