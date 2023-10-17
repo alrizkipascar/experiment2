@@ -22,7 +22,6 @@ async function getDataProject(context) {
 
 export default async function Project(context) {
   const project = await getDataProject(context);
-  console.log("context", project);
   // const router = useParams();
   // const { slug } = router;
   // const [blog, setBlogs] = useState([]);
