@@ -55,7 +55,7 @@ export default async function Home() {
       </section>
       <div className="bg-background w-full h-auto">
         <Hero />
-        <section className=" text-textWhite  w-full h-auto lg:h-full ">
+        <section className=" text-textWhite  w-full h-full lg:h-full ">
           <section className=" text-textWhite   w-full h-full ">
             <h1 className="border-b border-secondary text-textWhite pt-20 pb-10 pl-6 lg:pl-36 text-[30px] lg:text-[60px]">
               {title[0]?.title ?? ""}

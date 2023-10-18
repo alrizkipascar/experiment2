@@ -18,7 +18,7 @@ export default async function HeroBlog() {
   const truncate = (str, max, len) => {
     return str.length > max ? str.substring(0, len) + "..." : str;
   };
-  let trunctext = truncate(bodyText, 500, 500);
+  let trunctext = truncate(bodyText, 300, 300);
 
   return (
     <div className="blog-center  pt-10">
@@ -34,7 +34,7 @@ export default async function HeroBlog() {
             className="h-full w-full object-cover object-center "
           />
         </div>
-        <div className="m-6">
+        <div className="m-6 h-full w-full">
           <h6 className="mb-4 block font-sans text-base font-semibold uppercase leading-relaxed tracking-normal text-primary antialiased">
             Latest News
           </h6>
