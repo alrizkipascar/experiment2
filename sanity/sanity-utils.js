@@ -142,3 +142,22 @@ export async function getAboutContent() {
     }`
   );
 }
+
+export async function searchProject(query) {
+  return client.fetch(
+    groq`*[_type == "project" && slug.current == $query][0]{
+      _id,
+      _createdAt,
+      publishedAt,
+      title,
+      "slug": slug.current,
+      "mainImage": mainImage.asset->url,
+      tags[]->{...,title},
+      "imagesGallery": imagesGallery[] {
+        'url':asset->url,
+        },
+      body
+    }`,
+    { query }
+  );
+}
