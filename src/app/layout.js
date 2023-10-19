@@ -6,7 +6,7 @@ import Head from "next/head";
 
 const kanit_fonts = kanit;
 export const metadata = {
-  title: "Experimental 2 - Alrizki Pasca",
+  title: "Experimental 2 - Alrizki Pasca R",
   description:
     "Next js combined with sanity io for creating Content Management System (CMS), and creating mobile friendly view",
 };
@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
         <title>Home</title>
         <meta
           name="title"
-          content="Experimental 2 - Alrizki Pasca"
+          content="Experimental 2 - Alrizki Pasca R"
           key="title"
         />
         <meta
